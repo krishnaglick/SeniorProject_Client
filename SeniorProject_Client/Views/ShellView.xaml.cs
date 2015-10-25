@@ -19,11 +19,11 @@ namespace SeniorProject_Client.Views
     /// <summary>
     /// Interaction logic for TestView.xaml
     /// </summary>
-    public partial class TestView : UserControl
+    public partial class ShellView : UserControl
     {
-        public TestView()
+        public ShellView()
         {
-            InitializeComponent();
+
         }
     }
 }

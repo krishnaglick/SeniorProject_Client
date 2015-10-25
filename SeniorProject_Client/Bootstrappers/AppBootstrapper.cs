@@ -2,48 +2,34 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Autofac;
 using Caliburn.Micro;
+using Caliburn.Micro.Autofac;
+using Caliburn.Micro.Logging;
 using SeniorProject_Client.ViewModels;
 
 namespace SeniorProject_Client.Bootstrappers
 {
-    public class AppBootstrapper : BootstrapperBase {
-        SimpleContainer container;
-
-        public AppBootstrapper() {
-            Initialize();
-        }
-        protected override IEnumerable<Assembly> SelectAssemblies()
+    public class AppBootstrapper : TypedAutofacBootStrapper<ShellViewModel>
+    {
+        #region Fields
+        private readonly ILog _logger = LogManager.GetLog(typeof(AppBootstrapper));
+        #endregion
+    
+        #region Constructor
+        static AppBootstrapper()
         {
-            return new[] { Assembly.GetExecutingAssembly() };
+            LogManager.GetLog = type => new DebugLogger(typeof(AppBootstrapper));
         }
+        #endregion
+    
+        #region Overrides
+        protected override void ConfigureContainer(Autofac.ContainerBuilder builder)
+        {
+          _logger.Info("Configuring Container.");
+          base.ConfigureContainer(builder);
 
-        protected override void Configure() {
-            container = new SimpleContainer();
-
-            container.Singleton<IWindowManager, WindowManager>();
-            container.Singleton<IEventAggregator, EventAggregator>();
-            container.PerRequest<IShell, ShellViewModel>();
         }
-
-        protected override object GetInstance(Type service, string key) {
-            var instance = container.GetInstance(service, key);
-            if (instance != null)
-                return instance;
-
-            throw new InvalidOperationException("Could not locate any instances.");
-        }
-
-        protected override IEnumerable<object> GetAllInstances(Type service) {
-            return container.GetAllInstances(service);
-        }
-
-        protected override void BuildUp(object instance) {
-            container.BuildUp(instance);
-        }
-
-        protected override void OnStartup(object sender, System.Windows.StartupEventArgs e) {
-            DisplayRootViewFor<IShell>();
-        }
+        #endregion
     }
 }

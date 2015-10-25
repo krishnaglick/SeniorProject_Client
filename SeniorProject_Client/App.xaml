@@ -6,7 +6,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
-                    <bootstrappers:AppBootstrapper x:Key="Bootstrapper"/>
+                    <bootstrappers:AppBootstrapper x:Key="AppBootstrapper" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

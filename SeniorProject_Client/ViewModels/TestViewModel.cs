@@ -8,8 +8,8 @@ using Caliburn.Micro;
 
 namespace SeniorProject_Client.ViewModels
 {
-    [Export(typeof(ShellViewModel))]
-    class TestViewModel : ShellViewModel
+    [Export(typeof(TestViewModel))]
+    class TestViewModel : PropertyChangedBase
     {
         private int _count = 50;
 
@@ -21,6 +21,11 @@ namespace SeniorProject_Client.ViewModels
                 _count = value;
                 NotifyOfPropertyChange(() => Count);
             }
+        }
+
+        public string ImportantText
+        {
+            get { return "Other Important Text! So Read It!"; }
         }
     }
 }
