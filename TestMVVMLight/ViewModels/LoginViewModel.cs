@@ -1,8 +1,7 @@
-﻿
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using TestMVVMLight.Services;
 
-namespace TestMVVMLight.ViewModel
+namespace TestMVVMLight.ViewModels
 {
     public interface ILogin
     {
@@ -12,7 +11,7 @@ namespace TestMVVMLight.ViewModel
 
     class LoginViewModel : ViewModelBase, ILogin
     {
-        private LoginService dataService;
+        private readonly LoginService dataService = new LoginService();
 
         private string username = string.Empty;
         private string password = string.Empty;
@@ -27,11 +26,6 @@ namespace TestMVVMLight.ViewModel
         {
             get { return password; }
             set { Set(ref password, value); }
-        }
-
-        public LoginViewModel(ILoginService ds)
-        {
-            this.dataService = ds as LoginService;
         }
 
         void Login()

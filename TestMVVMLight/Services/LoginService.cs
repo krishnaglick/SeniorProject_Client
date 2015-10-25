@@ -4,9 +4,8 @@ using System;
 using System.Linq;
 using DataAccess.Contexts;
 using Microsoft.AspNet.Identity;
-using Models;
 using TestMVVMLight.Model;
-using ILogin = TestMVVMLight.ViewModel.ILogin;
+using ILogin = TestMVVMLight.ViewModels.ILogin;
 
 namespace TestMVVMLight.Services
 {

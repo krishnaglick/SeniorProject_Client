@@ -7,7 +7,7 @@
         mc:Ignorable="d ignore"
         Height="300"
         Width="300"
-        Title="MVVM Light Application"
+        Title="CHO"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
     
     <Window.Resources>
@@ -18,16 +18,21 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid x:Name="LayoutRoot">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <TextBlock FontSize="36"
-                   FontWeight="Bold"
-                   Foreground="Purple"
-                   Text="{Binding WelcomeTitle}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   TextWrapping="Wrap" />
-        <Button Content="Login" HorizontalAlignment="Left" Margin="100,225,0,0" VerticalAlignment="Top" Width="75"/>
+        <ContentControl Content="{Binding CurrentViewModel}" />
 
+        <DockPanel Grid.Row="1" >
+            <Button Command="{Binding ServiceEntryViewCommand}"
+                    Content="Second View"
+                    DockPanel.Dock="Right" />
+            <Button Command="{Binding LoginViewCommand}"
+                    Content="Login"
+                    DockPanel.Dock="Left" />
+        </DockPanel>
     </Grid>
 </Window>

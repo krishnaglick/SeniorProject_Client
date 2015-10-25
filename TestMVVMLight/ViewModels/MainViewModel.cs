@@ -1,8 +1,10 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Ioc;
 using TestMVVMLight.Model;
 
-namespace TestMVVMLight.ViewModel
+namespace TestMVVMLight.ViewModels
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
@@ -12,17 +14,7 @@ namespace TestMVVMLight.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// The <see cref="WelcomeTitle" /> property's name.
-        /// </summary>
-        public const string WelcomeTitlePropertyName = "WelcomeTitle";
-
         private string _welcomeTitle = string.Empty;
-
-        /// <summary>
-        /// Gets the WelcomeTitle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary>
         public string WelcomeTitle
         {
             get
@@ -35,15 +27,22 @@ namespace TestMVVMLight.ViewModel
             }
         }
 
-        public ViewModelBase CurrentView { get; set; }
-        public ICommand ViewLogin { get; set; }
+        private ViewModelBase _currentViewModel;
+        public ViewModelBase CurrentViewModel
+        {
+            get { return _currentViewModel; }
+            set { Set(ref _currentViewModel, value); }
+        }
+
+        public ICommand LoginViewCommand { get; private set; }
+        public ICommand ServiceEntryViewCommand { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel(IDataService dataService)
+        public MainViewModel()
         {
-            dataService.GetData(
+            /*dataService.GetData(
                 (item, error) =>
                 {
                     if (error != null)
@@ -53,14 +52,15 @@ namespace TestMVVMLight.ViewModel
                     }
 
                     WelcomeTitle = item.Title;
-                });
+                });*/
+            this.CurrentViewModel = new LoginViewModel();
+            LoginViewCommand = new RelayCommand(() => LoadViewModel(new LoginViewModel()));
+            ServiceEntryViewCommand = new RelayCommand(() => LoadViewModel(new ServiceEntryViewModel()));
         }
 
-        ////public override void Cleanup()
-        ////{
-        ////    // Clean up if needed
-
-        ////    base.Cleanup();
-        ////}
+        public void LoadViewModel(ViewModelBase viewModel)
+        {
+            this.CurrentViewModel = viewModel;
+        }
     }
 }

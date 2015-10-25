@@ -14,7 +14,7 @@ using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using TestMVVMLight.Model;
 
-namespace TestMVVMLight.ViewModel
+namespace TestMVVMLight.ViewModels
 {
     /// <summary>
     /// This class contains static references to all the view models in the

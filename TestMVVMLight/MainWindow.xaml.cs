@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using TestMVVMLight.ViewModel;
+using TestMVVMLight.ViewModels;
 
 namespace TestMVVMLight
 {

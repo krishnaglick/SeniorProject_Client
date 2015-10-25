@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\C#\TestMVVMLight\TestMVVMLight\obj\Debug\
+D:\C#\SeniorProject_Client\TestMVVMLight\obj\Debug\
 TestMVVMLight
 none
 false
 CODE_ANALYSIS;DEBUG;TRACE
-D:\C#\TestMVVMLight\TestMVVMLight\App.xaml
-2-1356017796
+D:\C#\SeniorProject_Client\TestMVVMLight\App.xaml
+41456985256
 
-13-1883784028
-76434299045
-MainWindow.xaml;Skins\MainSkin.xaml;
+16648699648
+761083894502
+MainWindow.xaml;Skins\MainSkin.xaml;Views\LoginView.xaml;Views\ServiceEntryView.xaml;
 
 False
 
