@@ -1,5 +1,8 @@
-﻿using GalaSoft.MvvmLight;
+﻿
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using TestMVVMLight.Services;
+using Utility.ExtensionMethod;
 
 namespace TestMVVMLight.ViewModels
 {
@@ -9,7 +12,7 @@ namespace TestMVVMLight.ViewModels
         string Password { get; set; }
     }
 
-    class LoginViewModel : ViewModelBase, ILogin
+    public class LoginViewModel : ViewModelBase, ILogin
     {
         private readonly LoginService dataService = new LoginService();
 
@@ -28,8 +31,23 @@ namespace TestMVVMLight.ViewModels
             set { Set(ref password, value); }
         }
 
-        void Login()
+        private RelayCommand _loginCommand;
+        public RelayCommand LoginCommand
         {
+            get
+            {
+                return _loginCommand ??
+                       (_loginCommand = new RelayCommand(Login));
+            }
+        }
+
+        private void Login()
+        {
+            if (Username.IsEmpty() || Password.IsEmpty())
+            {
+                //Alert message here.
+                return;
+            }
             dataService.Login(this);
         }
     }

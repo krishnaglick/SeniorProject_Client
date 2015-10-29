@@ -20,7 +20,7 @@ namespace TestMVVMLight.Services
         {
             using (var context = new Database())
             {
-                var loginUser = context.Volunteers.First(v => v.Username == volunteer.Username);
+                var loginUser = context.Volunteers.FirstOrDefault(v => v.Username == volunteer.Username);
                 if (loginUser != null)
                 {
                     return loginUser.VerifyPassword(volunteer.Password);

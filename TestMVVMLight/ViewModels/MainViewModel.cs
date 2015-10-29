@@ -37,28 +37,20 @@ namespace TestMVVMLight.ViewModels
         public ICommand LoginViewCommand { get; private set; }
         public ICommand ServiceEntryViewCommand { get; private set; }
 
+        public LoginViewModel lvm = new LoginViewModel();
+        public ServiceEntryViewModel sevm = new ServiceEntryViewModel();
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            /*dataService.GetData(
-                (item, error) =>
-                {
-                    if (error != null)
-                    {
-                        // Report error here
-                        return;
-                    }
-
-                    WelcomeTitle = item.Title;
-                });*/
             this.CurrentViewModel = new LoginViewModel();
-            LoginViewCommand = new RelayCommand(() => LoadViewModel(new LoginViewModel()));
-            ServiceEntryViewCommand = new RelayCommand(() => LoadViewModel(new ServiceEntryViewModel()));
+            LoginViewCommand = new RelayCommand(() => LoadViewModel(lvm));
+            ServiceEntryViewCommand = new RelayCommand(() => LoadViewModel(sevm));
         }
 
-        public void LoadViewModel(ViewModelBase viewModel)
+        private void LoadViewModel(ViewModelBase viewModel)
         {
             this.CurrentViewModel = viewModel;
         }

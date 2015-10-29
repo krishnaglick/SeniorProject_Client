@@ -56,6 +56,12 @@ namespace TestMVVMLight.ViewModels
             }
         }
 
+        public LoginViewModel LoginViewModel
+        {
+            get { return Main.lvm; }
+            set { Main.lvm = value; }
+        }
+
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>

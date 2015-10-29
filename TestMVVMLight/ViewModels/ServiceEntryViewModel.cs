@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight;
 
 namespace TestMVVMLight.ViewModels
 {
-    class ServiceEntryViewModel : ViewModelBase
+    public class ServiceEntryViewModel : ViewModelBase
     {
 
     }
